@@ -1,0 +1,88 @@
+<section class="contacto" id="contacto">
+  <div class="contacto-inner">
+
+    <div class="contacto-text">
+      <p class="eyebrow">Hablemos</p>
+      <h2>¿Listo para <em>empezar?</em></h2>
+      <p class="desc">Déjanos tus datos y te contactamos a la brevedad para hablar sobre tu proyecto.</p>
+
+      <div class="contacto-info">
+        <div class="info-item">
+          <span class="info-icon">📱</span>
+          <span>WhatsApp disponible</span>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">⚡</span>
+          <span>Respuesta en menos de 24 horas</span>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">🌎</span>
+          <span>El Salvador</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacto-form-wrap">
+
+      <!-- FORMULARIO -->
+      <div class="form-card" *ngIf="!enviado">
+        <h3 class="form-title">Envíanos un mensaje</h3>
+
+        <div class="form-group">
+          <label class="form-label">👤 Nombre completo</label>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Ej: Juan Pérez"
+            [(ngModel)]="nombre"
+            [disabled]="enviando"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">📱 Número de teléfono</label>
+          <input
+            type="tel"
+            class="form-input"
+            placeholder="Ej: 7687-7922"
+            [(ngModel)]="telefono"
+            [disabled]="enviando"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">✉️ Correo electrónico</label>
+          <input
+            type="email"
+            class="form-input"
+            placeholder="Ej: juan@gmail.com"
+            [(ngModel)]="correo"
+            [disabled]="enviando"
+          >
+        </div>
+
+        <div class="form-error" *ngIf="error">
+          Hubo un error al enviar. Intenta de nuevo.
+        </div>
+
+        <button
+          class="btn-enviar"
+          (click)="enviar()"
+          [disabled]="enviando || !nombre || !telefono || !correo"
+        >
+          <span *ngIf="!enviando">✉️ Enviar mensaje</span>
+          <span *ngIf="enviando">⏳ Enviando...</span>
+        </button>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="form-success" *ngIf="enviado">
+        <div class="success-icon">🎉</div>
+        <h3>¡Mensaje enviado!</h3>
+        <p>Gracias por contactarnos. Te responderemos en menos de 24 horas.</p>
+        <button class="btn-nuevo" (click)="enviado = false">Enviar otro mensaje</button>
+      </div>
+
+    </div>
+  </div>
+</section>
