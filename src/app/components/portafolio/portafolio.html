@@ -1,0 +1,31 @@
+<section class="portafolio" id="portafolio">
+
+    <div class="port-header reveal">
+        <span class="eyebrow">Nuestro trabajo</span>
+        <h2 class="section-title">Proyectos que <span class="gradient-text">hablan por sí solos</span></h2>
+        <p class="port-desc">Hemos trabajado con marcas, instituciones y empresas de diversos sectores en El Salvador y
+            la región.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-wrap reveal">
+        <div class="tabs">
+            <button *ngFor="let tab of tabs" class="tab-btn" [class.active]="tabActivo === tab.id"
+                (click)="cambiarTab(tab.id)">
+                <span class="tab-icon">{{tab.icon}}</span>
+                {{tab.label}}
+            </button>
+        </div>
+    </div>
+
+    <!-- GRID DE IMÁGENES -->
+    <div class="galeria-grid reveal">
+        <div class="galeria-item" *ngFor="let item of itemsActivos">
+            <img [src]="item.src" [alt]="item.titulo" loading="lazy">
+            <div class="galeria-overlay">
+                <span class="galeria-titulo">{{item.titulo}}</span>
+            </div>
+        </div>
+    </div>
+
+</section>

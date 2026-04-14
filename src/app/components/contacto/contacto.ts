@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core'; // <-- 1. Importarlo
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import * as emailjs from '@emailjs/browser';
@@ -17,17 +17,14 @@ export class Contacto {
   enviado = false;
   error = false;
 
-  // 2. Inyectarlo en el constructor (ya no necesitamos NgZone)
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
   async enviar() {
     if (!this.nombre || !this.telefono || !this.correo) return;
 
     this.enviando = true;
     this.error = false;
-    
-    // Forzamos actualización por si acaso
-    this.cdr.detectChanges(); 
+    this.cdr.detectChanges();
 
     try {
       await emailjs.send(
@@ -41,23 +38,18 @@ export class Contacto {
         'qoGS3UpNOc5y5m5nX'
       );
 
-      // 3. Actualizamos las variables
       this.enviado = true;
       this.enviando = false;
       this.nombre = '';
       this.telefono = '';
       this.correo = '';
-
-      // 4. ¡El toque mágico! Obligamos a Angular a leer las variables de nuevo
       this.cdr.detectChanges();
 
     } catch (err) {
       console.error('Error EmailJS:', err);
       this.error = true;
       this.enviando = false;
-      
-      // También lo ponemos aquí por si falla, para que quite el "Enviando..."
-      this.cdr.detectChanges(); 
+      this.cdr.detectChanges();
     }
   }
 }

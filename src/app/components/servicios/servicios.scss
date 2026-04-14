@@ -1,0 +1,119 @@
+.servicios {
+    background: #F9FAFB;
+    padding: 100px 60px;
+}
+
+.servicios-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px;
+}
+
+.servicios-desc {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.servicio-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    transition: all .3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    // Forzar visibilidad aunque reveal no dispare
+    opacity: 1 !important;
+    transform: none !important;
+
+    &:hover {
+        transform: translateY(-6px) !important;
+        box-shadow: 0 16px 48px rgba(123, 47, 190, .12);
+        border-color: rgba(123, 47, 190, .2);
+
+        .servicio-icon {
+            background: var(--gradient);
+            color: #fff;
+        }
+
+        .servicio-arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+    }
+}
+
+.servicio-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(123, 47, 190, .08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: var(--purple);
+    transition: all .3s;
+    flex-shrink: 0;
+}
+
+.servicio-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.servicio-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.servicio-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 18px;
+    color: var(--purple);
+    opacity: 0;
+    transition: all .3s;
+}
+
+@media (max-width: 1100px) {
+    .servicios-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .servicios {
+        padding: 60px 24px;
+    }
+
+    .servicios-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .servicios-grid {
+        grid-template-columns: 1fr;
+    }
+}

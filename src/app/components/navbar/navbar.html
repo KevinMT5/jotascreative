@@ -1,0 +1,21 @@
+<nav [class.scrolled]="scrolled">
+    <div class="nav-logo" (click)="scrollTo('inicio')">
+        <img src="images/logo2.png" alt="Jotas Creative" class="logo-img" height="55px" width="110px">
+    </div>
+
+    <ul class="nav-links" [class.open]="menuOpen">
+        <li><a (click)="scrollTo('servicios')">Servicios</a></li>
+        <li><a (click)="scrollTo('nosotros')">Nosotros</a></li>
+        <li><a (click)="scrollTo('portafolio')">Portafolio</a></li>
+        <li><a (click)="scrollTo('contacto')">Contacto</a></li>
+        <li class="mobile-cta">
+            <a (click)="scrollTo('contacto')" class="nav-btn">Contáctanos</a>
+        </li>
+    </ul>
+
+    <a (click)="scrollTo('contacto')" class="nav-btn desktop-cta">Contáctanos</a>
+
+    <button class="burger" (click)="toggleMenu()" [class.active]="menuOpen">
+        <span></span><span></span><span></span>
+    </button>
+</nav>

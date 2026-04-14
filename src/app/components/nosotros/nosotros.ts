@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-nosotros',
   imports: [],
   templateUrl: './nosotros.html',
-  styleUrl: './nosotros.scss',
+  styleUrl: './nosotros.scss'
 })
-export class Nosotros {}
+export class Nosotros { }

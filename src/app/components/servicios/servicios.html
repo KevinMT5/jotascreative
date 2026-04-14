@@ -1,0 +1,22 @@
+<section class="servicios" id="servicios">
+    <div class="servicios-header reveal">
+        <span class="eyebrow">Lo que hacemos</span>
+        <h2 class="section-title">Nuestros <span class="gradient-text">Servicios</span></h2>
+        <p class="servicios-desc">Soluciones integrales de comunicación y marketing para posicionar tu marca y generar
+            resultados reales.</p>
+    </div>
+
+    <div class="servicios-grid">
+        <div class="servicio-card reveal" [class]="'reveal-delay-' + ((i % 4) + 1)"
+            *ngFor="let s of servicios; let i = index">
+
+            <div class="servicio-icon">
+                <lucide-angular [img]="s.icon" size="28" strokeWidth="1.5"></lucide-angular>
+            </div>
+
+            <h3 class="servicio-titulo">{{s.titulo}}</h3>
+            <p class="servicio-desc">{{s.desc}}</p>
+            <div class="servicio-arrow">→</div>
+        </div>
+    </div>
+</section>
