@@ -1,88 +1,156 @@
 <section class="contacto" id="contacto">
-    <div class="contacto-inner">
+  <div class="contacto-inner">
 
-        <div class="contacto-text reveal">
-            <span class="eyebrow">Hablemos</span>
-            <h2 class="section-title">¿Listo para <span class="gradient-text">empezar?</span></h2>
-            <p class="contacto-desc">Déjanos tus datos y te contactamos a la brevedad para hablar sobre tu proyecto.</p>
+    <!-- LADO IZQUIERDO -->
+    <div class="contacto-info-wrap reveal">
 
-            <div class="contacto-info">
-                <div class="info-item">
-                    <span class="info-icon">📱</span>
-                    <div>
-                        <div class="info-label">WhatsApp</div>
-                        <div class="info-val">7222-0124</div>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">📧</span>
-                    <div>
-                        <div class="info-label">Correo</div>
-                        <div class="info-val">creativejotas&#64;gmail.com</div>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">📍</span>
-                    <div>
-                        <div class="info-label">Dirección</div>
-                        <div class="info-val">Km. 11 Troncal del Norte, Av. La Reina #22</div>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">⚡</span>
-                    <div>
-                        <div class="info-label">Respuesta</div>
-                        <div class="info-val">Menos de 24 horas</div>
-                    </div>
-                </div>
-            </div>
+      <span class="eyebrow">Hablemos</span>
+      <h2 class="section-title">
+        ¿Listo para hacer crecer
+        <span class="gradient-text">tu marca?</span>
+      </h2>
+      <p class="contacto-desc">
+        Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.
+        Estamos listos para construir algo grande juntos.
+      </p>
+
+      <div class="info-cards">
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <lucide-angular [img]="Phone" size="22" strokeWidth="1.5"></lucide-angular>
+          </div>
+          <div class="info-card-text">
+            <span class="info-card-label">WhatsApp</span>
+            <span class="info-card-val">7222-0124</span>
+          </div>
         </div>
 
-        <div class="contacto-form-wrap reveal reveal-delay-2">
-
-            <!-- FORMULARIO -->
-            <div class="form-card" *ngIf="!enviado">
-                <h3 class="form-title">Envíanos un mensaje</h3>
-                <p class="form-subtitle">Te responderemos a la brevedad</p>
-
-                <div class="form-group">
-                    <label class="form-label">👤 Nombre completo</label>
-                    <input type="text" class="form-input" placeholder="Ej: Juan Pérez" [(ngModel)]="nombre"
-                        [disabled]="enviando">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">📱 Número de teléfono</label>
-                    <input type="tel" class="form-input" placeholder="Ej: 7687-7922" [(ngModel)]="telefono"
-                        [disabled]="enviando">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">✉️ Correo electrónico</label>
-                    <input type="email" class="form-input" placeholder="Ej: juan@gmail.com" [(ngModel)]="correo"
-                        [disabled]="enviando">
-                </div>
-
-                <div class="form-error" *ngIf="error">
-                    ⚠️ Hubo un error al enviar. Por favor intenta de nuevo.
-                </div>
-
-                <button class="btn-enviar" (click)="enviar()" [disabled]="enviando || !nombre || !telefono || !correo">
-                    <span *ngIf="!enviando">✉️ Enviar mensaje</span>
-                    <span *ngIf="enviando">⏳ Enviando...</span>
-                </button>
-            </div>
-
-            <!-- SUCCESS STATE -->
-            <div class="form-success" *ngIf="enviado">
-                <div class="success-icon">🎉</div>
-                <h3>¡Mensaje enviado!</h3>
-                <p>Gracias por contactarnos. Te responderemos en menos de 24 horas.</p>
-                <button class="btn-nuevo" (click)="enviado = false">
-                    Enviar otro mensaje
-                </button>
-            </div>
-
+        <div class="info-card">
+          <div class="info-card-icon">
+            <lucide-angular [img]="Mail" size="22" strokeWidth="1.5"></lucide-angular>
+          </div>
+          <div class="info-card-text">
+            <span class="info-card-label">Correo</span>
+            <span class="info-card-val">creativejotas&#64;gmail.com</span>
+          </div>
         </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <lucide-angular [img]="MapPin" size="22" strokeWidth="1.5"></lucide-angular>
+          </div>
+          <div class="info-card-text">
+            <span class="info-card-label">Dirección</span>
+            <span class="info-card-val">Km. 11 Troncal del Norte, Av. La Reina #22</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <lucide-angular [img]="Clock" size="22" strokeWidth="1.5"></lucide-angular>
+          </div>
+          <div class="info-card-text">
+            <span class="info-card-label">Respuesta</span>
+            <span class="info-card-val">Menos de 24 horas</span>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <!-- LADO DERECHO — FORMULARIO -->
+    <div class="contacto-form-wrap reveal reveal-delay-2">
+
+      <!-- FORMULARIO -->
+      <div class="form-card" *ngIf="!enviado">
+
+        <div class="form-card-header">
+          <h3>Envíanos un mensaje</h3>
+          <p>Completa el formulario y te contactamos a la brevedad</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Nombre completo</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <lucide-angular [img]="Mail" size="16" strokeWidth="1.5"></lucide-angular>
+            </span>
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Ej: Juan Pérez"
+              [(ngModel)]="nombre"
+              [disabled]="enviando"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Número de teléfono</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <lucide-angular [img]="Phone" size="16" strokeWidth="1.5"></lucide-angular>
+            </span>
+            <input
+              type="tel"
+              class="form-input"
+              placeholder="Ej: 7687-7922"
+              [(ngModel)]="telefono"
+              [disabled]="enviando"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Correo electrónico</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <lucide-angular [img]="Mail" size="16" strokeWidth="1.5"></lucide-angular>
+            </span>
+            <input
+              type="email"
+              class="form-input"
+              placeholder="Ej: juan@gmail.com"
+              [(ngModel)]="correo"
+              [disabled]="enviando"
+            >
+          </div>
+        </div>
+
+        <div class="form-error" *ngIf="error">
+          Hubo un error al enviar. Por favor intenta de nuevo.
+        </div>
+
+        <button
+          class="btn-enviar"
+          (click)="enviar()"
+          [disabled]="enviando || !nombre || !telefono || !correo"
+        >
+          <ng-container *ngIf="!enviando">
+            <lucide-angular [img]="Send" size="18" strokeWidth="2"></lucide-angular>
+            Enviar mensaje
+          </ng-container>
+          <ng-container *ngIf="enviando">
+            <span class="spinner"></span>
+            Enviando...
+          </ng-container>
+        </button>
+
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="form-success" *ngIf="enviado">
+        <div class="success-icon-wrap">
+          <lucide-angular [img]="CheckCircle" size="56" strokeWidth="1.5"></lucide-angular>
+        </div>
+        <h3>¡Mensaje enviado!</h3>
+        <p>Gracias por contactarnos. Te responderemos en menos de 24 horas.</p>
+        <button class="btn-nuevo" (click)="enviado = false">
+          Enviar otro mensaje
+        </button>
+      </div>
+
+    </div>
+  </div>
 </section>

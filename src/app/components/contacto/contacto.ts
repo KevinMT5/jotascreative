@@ -2,14 +2,22 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import * as emailjs from '@emailjs/browser';
+import { LucideAngularModule, Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-angular';
 
 @Component({
   selector: 'app-contacto',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule],
   templateUrl: './contacto.html',
   styleUrl: './contacto.scss'
 })
 export class Contacto {
+  readonly Mail = Mail;
+  readonly Phone = Phone;
+  readonly MapPin = MapPin;
+  readonly Clock = Clock;
+  readonly Send = Send;
+  readonly CheckCircle = CheckCircle;
+
   nombre = '';
   telefono = '';
   correo = '';
@@ -17,7 +25,7 @@ export class Contacto {
   enviado = false;
   error = false;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   async enviar() {
     if (!this.nombre || !this.telefono || !this.correo) return;

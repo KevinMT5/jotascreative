@@ -1,138 +1,313 @@
 .contacto {
-    padding: 100px 60px;
-    background: #fff;
+  padding: 100px 60px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(123,47,190,.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,140,0,.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
 }
 
 .contacto-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+// ── LADO IZQUIERDO ──
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+
+  &::before, &::after {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--orange);
+    opacity: .4;
+  }
+}
+
+.section-title {
+  color: #fff !important;
+  margin-bottom: 16px;
 }
 
 .contacto-desc {
-    font-size: 16px;
-    color: var(--gray);
-    line-height: 1.7;
-    margin-bottom: 36px;
+  font-size: 16px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.8;
+  margin-bottom: 36px;
 }
 
-.contacto-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 16px 20px;
-    background: #F9FAFB;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    transition: all .2s;
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  transition: all .2s;
 
-    &:hover {
-        border-color: rgba(123, 47, 190, .2);
-        background: rgba(123, 47, 190, .03);
-    }
+  &:hover {
+    background: rgba(123,47,190,.15);
+    border-color: rgba(123,47,190,.3);
+  }
 }
 
-.info-icon {
-    font-size: 24px;
-    flex-shrink: 0;
-    margin-top: 2px;
+.info-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+
+  lucide-angular { color: #fff; }
 }
 
-.info-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: var(--gray);
-    margin-bottom: 4px;
+.info-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.info-val {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--dark);
+.info-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.4);
 }
 
+.info-card-val {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,.9);
+}
+
+// ── FORMULARIO ──
 .form-card {
-    background: #fff;
-    border-radius: 28px;
-    padding: 40px;
-    box-shadow: 0 8px 40px rgba(123, 47, 190, .08);
-    border: 1px solid rgba(123, 47, 190, .1);
+  background: #fff;
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.3);
 }
 
-.form-title {
+.form-card-header {
+  margin-bottom: 28px;
+
+  h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 22px;
     font-weight: 700;
     color: var(--dark);
     margin-bottom: 6px;
-    text-align: center;
-}
+  }
 
-.form-subtitle {
+  p {
     font-size: 14px;
     color: var(--gray);
-    text-align: center;
-    margin-bottom: 28px;
+  }
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
 }
 
 .form-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--dark);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .form-input {
-    padding: 12px 16px;
-    background: #F9FAFB;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    font-size: 15px;
-    color: var(--dark);
-    outline: none;
-    transition: all .2s;
-    font-family: 'Inter', sans-serif;
-    width: 100%;
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  background: #F9FAFB;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  color: var(--dark);
+  outline: none;
+  transition: all .2s;
+  font-family: 'Inter', sans-serif;
 
-    &:focus {
-        border-color: #7B2FBE;
-        background: #fff;
-        box-shadow: 0 0 0 4px rgba(123, 47, 190, .08);
-    }
+  &:focus {
+    border-color: #7B2FBE;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(123,47,190,.08);
+  }
 
-    &::placeholder {
-        color: #9CA3AF;
-    }
-
-    &:disabled {
-        opacity: .6;
-        cursor: not-allowed;
-    }
+  &::placeholder { color: #9CA3AF; }
+  &:disabled { opacity: .6; cursor: not-allowed; }
 }
 
 .form-error {
-    background: #FEF2F2;
-    color: #DC2626;
-    font-size: 13px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #FECACA;
+  background: #FEF2F2;
+  color: #DC2626;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #FECACA;
+}
+
+.btn-enviar {
+  width: 100%;
+  padding: 14px;
+  background: var(--gradient);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .3s;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(123,47,190,.3);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(123,47,190,.4);
+  }
+
+  &:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ── SUCCESS ──
+.form-success {
+  background: #fff;
+  border-radius: 28px;
+  padding: 52px 40px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,.3);
+
+  .success-icon-wrap {
+    color: #16A34A;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    animation: bounce-in .6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+}
+
+@keyframes bounce-in {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.btn-nuevo {
+  padding: 12px 32px;
+  background: none;
+  border: 2px solid #7B2FBE;
+  color: #7B2FBE;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: 'Inter', sans-serif;
+
+  &:hover {
+    background: #7B2FBE;
+    color: #fff;
+  }
+}
+
+@media (max-width: 900px) {
+  .contacto { padding: 60px 24px; }
+  .contacto-inner { grid-template-columns: 1fr; gap: 40px; }
+  .form-card { padding: 28px 20px; }
 }
