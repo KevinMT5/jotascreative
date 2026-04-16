@@ -7,10 +7,12 @@ import { Nosotros } from '../../components/nosotros/nosotros';
 import { Portafolio } from '../../components/portafolio/portafolio';
 import { Contacto } from '../../components/contacto/contacto';
 import { Footer } from '../../components/footer/footer';
+import { Chatbot } from '../../components/chatbot/chatbot';
+
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, Hero, Servicios, Nosotros, Portafolio, Contacto, Footer],
+  imports: [Navbar, Hero, Servicios, Nosotros, Portafolio, Contacto, Footer, Chatbot],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
