@@ -71,11 +71,17 @@
 .chat-header-avatar {
   width: 42px; height: 42px;
   border-radius: 50%;
-  background: rgba(255,255,255,.2);
+  background: rgba(255,255,255,.95);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px; font-weight: 800; color: #fff;
   flex-shrink: 0;
+  overflow: hidden;
+  padding: 4px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 .chat-header-info { flex: 1; }
