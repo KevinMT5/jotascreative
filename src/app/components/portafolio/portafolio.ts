@@ -18,31 +18,31 @@ export class Portafolio {
     { id: 'fotografia', label: 'Fotografía', icon: '📸' },
   ];
 
-  // ⚠️ Reemplaza los src con tus imágenes reales en public/images/portafolio/
+
   galeria: Record<string, { src: string; titulo: string }[]> = {
     logos: [
-      { src: 'images/portafolio/logos/logo1.jpg', titulo: 'Logo 1' },
-      { src: 'images/portafolio/logos/logo2.jpg', titulo: 'Logo 2' },
-      { src: 'images/portafolio/logos/logo3.jpg', titulo: 'Logo 3' },
-      { src: 'images/portafolio/logos/logo4.jpg', titulo: 'Logo 4' },
+      { src: 'images/portafolio/logos/logo1.png', titulo: 'Logo 1' },
+      { src: 'images/portafolio/logos/logo2.png', titulo: 'Logo 2' },
+      { src: 'images/portafolio/logos/logo3.png', titulo: 'Logo 3' },
+      { src: 'images/portafolio/logos/logo4.png', titulo: 'Logo 4' },
     ],
     disenos: [
-      { src: 'images/portafolio/disenos/diseno1.jpg', titulo: 'Diseño 1' },
-      { src: 'images/portafolio/disenos/diseno2.jpg', titulo: 'Diseño 2' },
-      { src: 'images/portafolio/disenos/diseno3.jpg', titulo: 'Diseño 3' },
-      { src: 'images/portafolio/disenos/diseno4.jpg', titulo: 'Diseño 4' },
+      { src: 'images/portafolio/disenos/diseno1.png', titulo: 'Diseño 1' },
+      { src: 'images/portafolio/disenos/diseno2.png', titulo: 'Diseño 2' },
+      { src: 'images/portafolio/disenos/diseno3.png', titulo: 'Diseño 3' },
+      { src: 'images/portafolio/disenos/diseno4.png', titulo: 'Diseño 4' },
     ],
     banners: [
-      { src: 'images/portafolio/banners/banner1.jpg', titulo: 'Banner 1' },
-      { src: 'images/portafolio/banners/banner2.jpg', titulo: 'Banner 2' },
-      { src: 'images/portafolio/banners/banner3.jpg', titulo: 'Banner 3' },
-      { src: 'images/portafolio/banners/banner4.jpg', titulo: 'Banner 4' },
+      { src: 'images/portafolio/banners/banner1.png', titulo: 'Banner 1' },
+      { src: 'images/portafolio/banners/banner2.png', titulo: 'Banner 2' },
+      { src: 'images/portafolio/banners/banner3.png', titulo: 'Banner 3' },
+      { src: 'images/portafolio/banners/banner4.png', titulo: 'Banner 4' },
     ],
     fotografia: [
-      { src: 'images/portafolio/fotografia/foto1.jpg', titulo: 'Fotografía 1' },
-      { src: 'images/portafolio/fotografia/foto2.jpg', titulo: 'Fotografía 2' },
-      { src: 'images/portafolio/fotografia/foto3.jpg', titulo: 'Fotografía 3' },
-      { src: 'images/portafolio/fotografia/foto4.jpg', titulo: 'Fotografía 4' },
+      { src: 'images/portafolio/fotografia/foto1.png', titulo: 'Fotografía 1' },
+      { src: 'images/portafolio/fotografia/foto2.png', titulo: 'Fotografía 2' },
+      { src: 'images/portafolio/fotografia/foto3.png', titulo: 'Fotografía 3' },
+      { src: 'images/portafolio/fotografia/foto4.png', titulo: 'Fotografía 4' },
     ],
   };
 
