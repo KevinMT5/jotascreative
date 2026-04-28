@@ -12,7 +12,7 @@
         <div class="tabs">
             <button *ngFor="let tab of tabs" class="tab-btn" [class.active]="tabActivo === tab.id"
                 (click)="cambiarTab(tab.id)">
-                <span class="tab-icon">{{tab.icon}}</span>
+                <lucide-angular [img]="tab.icon" size="16" strokeWidth="1.5"></lucide-angular>
                 {{tab.label}}
             </button>
         </div>

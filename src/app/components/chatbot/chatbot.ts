@@ -2,9 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import * as emailjs from '@emailjs/browser';
+import { LucideAngularModule, MessageCircle, X, Send, ChevronRight } from 'lucide-angular';
 import { ReplacePipe } from '../../pipes/replace.pipe';
-
-
 
 interface Mensaje {
   tipo: 'bot' | 'user';
@@ -16,11 +15,16 @@ type Paso = 'inicio' | 'menu' | 'faq' | 'lead_nombre' | 'lead_telefono' | 'lead_
 
 @Component({
   selector: 'app-chatbot',
-  imports: [CommonModule, FormsModule, ReplacePipe],
+  imports: [CommonModule, FormsModule, LucideAngularModule, ReplacePipe],
   templateUrl: './chatbot.html',
   styleUrl: './chatbot.scss'
 })
 export class Chatbot {
+  readonly MessageCircle = MessageCircle;
+  readonly X = X;
+  readonly Send = Send;
+  readonly ChevronRight = ChevronRight;
+
   abierto = false;
   mensajes: Mensaje[] = [];
   inputTexto = '';
@@ -30,20 +34,18 @@ export class Chatbot {
   enviando = false;
 
   faqs: Record<string, string> = {
-    'servicios': '📋 Ofrecemos: Manejo de Redes Sociales, Community Manager, Fotografía Profesional, Producción de Video, Páginas Web, Publicidad ATL y BTL, Campañas de Marketing y más. ¿Te gustaría saber el precio de alguno?',
-    'precios': '💰 Nuestros precios varían según el servicio y el alcance del proyecto. Te recomendamos contactarnos para una cotización personalizada y sin compromiso.',
-    'ubicacion': '📍 Estamos ubicados en Km. 11 Troncal del Norte, Av. La Reina #22, El Salvador. También atendemos de forma remota.',
-    'tiempo': '⏱️ Los tiempos varían según el proyecto. Una página web toma entre 2-4 semanas, una sesión fotográfica 1-2 días, y el manejo de redes es mensual.',
-    'contacto': '📱 Puedes contactarnos por WhatsApp al 7222-0124 o por correo a creativejotas@gmail.com. ¡Respondemos en menos de 24 horas!',
+    'servicios': 'Ofrecemos: Manejo de Redes Sociales, Community Manager, Fotografía Profesional, Producción de Video, Páginas Web, Publicidad ATL y BTL, Campañas de Marketing y más.',
+    'precios': 'Nuestros precios varían según el servicio y el alcance del proyecto. Te recomendamos contactarnos para una cotización personalizada y sin compromiso.',
+    'ubicacion': 'Estamos ubicados en Km. 11 Troncal del Norte, Av. La Reina #22, El Salvador. También atendemos de forma remota.',
+    'tiempo': 'Los tiempos varían según el proyecto. Una página web toma entre 2-4 semanas, una sesión fotográfica 1-2 días, y el manejo de redes es mensual.',
+    'contacto': 'Puedes contactarnos por WhatsApp al **7222-0124** o por correo a **creativejotas@gmail.com**. ¡Respondemos en menos de 24 horas!',
   };
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
   toggleChat() {
     this.abierto = !this.abierto;
-    if (this.abierto && this.mensajes.length === 0) {
-      this.iniciarChat();
-    }
+    if (this.abierto && this.mensajes.length === 0) this.iniciarChat();
   }
 
   iniciarChat() {
@@ -51,12 +53,12 @@ export class Chatbot {
       this.agregarMensajeBot(
         '¡Hola! 👋 Soy el asistente de **Jotas Creative**. ¿En qué te puedo ayudar hoy?',
         [
-          { label: '📋 Ver servicios', valor: 'servicios' },
-          { label: '💰 Precios', valor: 'precios' },
-          { label: '📍 Ubicación', valor: 'ubicacion' },
-          { label: '⏱️ Tiempos de entrega', valor: 'tiempo' },
-          { label: '📲 Información de contacto', valor: 'contacto' },
-          { label: '🙋 Quiero que me contacten', valor: 'lead' },
+          { label: 'Ver servicios', valor: 'servicios' },
+          { label: 'Precios', valor: 'precios' },
+          { label: 'Ubicación', valor: 'ubicacion' },
+          { label: 'Tiempos de entrega', valor: 'tiempo' },
+          { label: 'Información de contacto', valor: 'contacto' },
+          { label: 'Quiero que me contacten', valor: 'lead' },
         ]
       );
       this.paso = 'menu';
@@ -64,19 +66,17 @@ export class Chatbot {
   }
 
   seleccionarOpcion(valor: string) {
-    this.agregarMensajeUsuario(
-      valor === 'lead' ? '🙋 Quiero que me contacten' :
-      valor === 'servicios' ? '📋 Ver servicios' :
-      valor === 'precios' ? '💰 Precios' :
-      valor === 'ubicacion' ? '📍 Ubicación' :
-      valor === 'tiempo' ? '⏱️ Tiempos de entrega' :
-      valor === 'contacto' ? '📲 Información de contacto' :
-      valor === 'menu' ? '🔙 Volver al menú' : valor
-    );
+    const labels: Record<string, string> = {
+      lead: 'Quiero que me contacten',
+      servicios: 'Ver servicios', precios: 'Precios',
+      ubicacion: 'Ubicación', tiempo: 'Tiempos de entrega',
+      contacto: 'Información de contacto', menu: 'Volver al menú'
+    };
+    this.agregarMensajeUsuario(labels[valor] || valor);
 
     if (valor === 'lead') {
       setTimeout(() => {
-        this.agregarMensajeBot('¡Perfecto! 😊 Para contactarte necesito algunos datos. ¿Cuál es tu **nombre completo**?');
+        this.agregarMensajeBot('¡Perfecto! 😊 ¿Cuál es tu **nombre completo**?');
         this.paso = 'lead_nombre';
       }, 400);
       return;
@@ -84,17 +84,14 @@ export class Chatbot {
 
     if (valor === 'menu') {
       setTimeout(() => {
-        this.agregarMensajeBot(
-          '¿En qué más te puedo ayudar?',
-          [
-            { label: '📋 Ver servicios', valor: 'servicios' },
-            { label: '💰 Precios', valor: 'precios' },
-            { label: '📍 Ubicación', valor: 'ubicacion' },
-            { label: '⏱️ Tiempos de entrega', valor: 'tiempo' },
-            { label: '📲 Información de contacto', valor: 'contacto' },
-            { label: '🙋 Quiero que me contacten', valor: 'lead' },
-          ]
-        );
+        this.agregarMensajeBot('¿En qué más te puedo ayudar?', [
+          { label: 'Ver servicios', valor: 'servicios' },
+          { label: 'Precios', valor: 'precios' },
+          { label: 'Ubicación', valor: 'ubicacion' },
+          { label: 'Tiempos de entrega', valor: 'tiempo' },
+          { label: 'Información de contacto', valor: 'contacto' },
+          { label: 'Quiero que me contacten', valor: 'lead' },
+        ]);
         this.paso = 'menu';
       }, 400);
       return;
@@ -102,13 +99,10 @@ export class Chatbot {
 
     if (this.faqs[valor]) {
       setTimeout(() => {
-        this.agregarMensajeBot(
-          this.faqs[valor],
-          [
-            { label: '🙋 Quiero que me contacten', valor: 'lead' },
-            { label: '🔙 Volver al menú', valor: 'menu' },
-          ]
-        );
+        this.agregarMensajeBot(this.faqs[valor], [
+          { label: 'Quiero que me contacten', valor: 'lead' },
+          { label: 'Volver al menú', valor: 'menu' },
+        ]);
       }, 400);
     }
   }
@@ -122,7 +116,7 @@ export class Chatbot {
     setTimeout(async () => {
       if (this.paso === 'lead_nombre') {
         this.leadNombre = texto;
-        this.agregarMensajeBot(`Mucho gusto, **${texto}** 😊 ¿Cuál es tu número de **WhatsApp o teléfono**?`);
+        this.agregarMensajeBot(`Mucho gusto, **${texto}** 😊 ¿Cuál es tu número de **WhatsApp**?`);
         this.paso = 'lead_telefono';
 
       } else if (this.paso === 'lead_telefono') {
@@ -132,50 +126,33 @@ export class Chatbot {
 
       } else if (this.paso === 'lead_correo') {
         this.enviando = true;
-        this.agregarMensajeBot('⏳ Guardando tus datos...');
-
+        this.agregarMensajeBot('Guardando tus datos...');
         try {
-          await emailjs.send(
-            'service_4z9fc92',
-            'template_4okdo78',
-            {
-              nombre: this.leadNombre,
-              telefono: this.leadTelefono,
-              correo: texto
-            },
-            'qoGS3UpNOc5y5m5nX'
-          );
-
+          await emailjs.send('service_4z9fc92', 'template_4okdo78', {
+            nombre: this.leadNombre,
+            telefono: this.leadTelefono,
+            correo: texto
+          }, 'qoGS3UpNOc5y5m5nX');
           this.mensajes.pop();
           this.agregarMensajeBot(
-            `✅ ¡Listo **${this.leadNombre}**! Recibimos tus datos y te contactaremos pronto al **${this.leadTelefono}**. ¡Gracias por confiar en Jotas Creative! 🎉`,
-            [{ label: '🔙 Volver al menú', valor: 'menu' }]
+            `✅ ¡Listo **${this.leadNombre}**! Te contactaremos pronto al **${this.leadTelefono}**. ¡Gracias por confiar en Jotas Creative! 🎉`,
+            [{ label: 'Volver al menú', valor: 'menu' }]
           );
           this.paso = 'fin';
-
-        } catch (err) {
+        } catch {
           this.mensajes.pop();
-          this.agregarMensajeBot(
-            '❌ Hubo un error al guardar tus datos. Por favor intenta de nuevo o contáctanos directamente al 7222-0124.',
-            [{ label: '🔙 Volver al menú', valor: 'menu' }]
-          );
+          this.agregarMensajeBot('❌ Hubo un error. Contáctanos al 7222-0124.',
+            [{ label: 'Volver al menú', valor: 'menu' }]);
         }
-
         this.enviando = false;
         this.leadNombre = '';
         this.leadTelefono = '';
-
       } else {
-        this.agregarMensajeBot(
-          '¿En qué te puedo ayudar?',
-          [
-            { label: '📋 Ver servicios', valor: 'servicios' },
-            { label: '💰 Precios', valor: 'precios' },
-            { label: '🙋 Quiero que me contacten', valor: 'lead' },
-          ]
-        );
+        this.agregarMensajeBot('¿En qué te puedo ayudar?', [
+          { label: 'Ver servicios', valor: 'servicios' },
+          { label: 'Quiero que me contacten', valor: 'lead' },
+        ]);
       }
-
       this.cdr.detectChanges();
     }, 500);
   }

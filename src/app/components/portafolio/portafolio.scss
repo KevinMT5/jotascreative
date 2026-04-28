@@ -146,6 +146,47 @@
     }
 }
 
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all .25s;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+
+    lucide-angular {
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        color: var(--purple);
+        background: rgba(123, 47, 190, .06);
+
+        lucide-angular {
+            color: var(--purple);
+        }
+    }
+
+    &.active {
+        background: var(--gradient);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 4px 16px rgba(123, 47, 190, .25);
+
+        lucide-angular {
+            color: #fff;
+        }
+    }
+}
+
 @media (max-width: 480px) {
     .galeria-grid {
         grid-template-columns: repeat(2, 1fr);

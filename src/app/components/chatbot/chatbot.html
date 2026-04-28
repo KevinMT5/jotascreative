@@ -1,54 +1,46 @@
 <!-- BOTÓN FLOTANTE -->
 <div class="chat-float">
   <button class="chat-toggle" (click)="toggleChat()" [class.abierto]="abierto">
-    <span class="chat-toggle-icon" *ngIf="!abierto">💬</span>
-    <span class="chat-toggle-icon" *ngIf="abierto">✕</span>
+    <lucide-angular *ngIf="!abierto" [img]="MessageCircle" size="26" strokeWidth="1.5"></lucide-angular>
+    <lucide-angular *ngIf="abierto" [img]="X" size="22" strokeWidth="2"></lucide-angular>
     <span class="chat-badge" *ngIf="!abierto">1</span>
   </button>
 
-  <!-- VENTANA DEL CHAT -->
+  <!-- VENTANA -->
   <div class="chat-window" [class.visible]="abierto">
 
     <!-- HEADER -->
     <div class="chat-header">
- <div class="chat-header-avatar">
-  <img src="images/logo1.png" alt="Jotas Creative">
-</div>
-<div class="chat-header-info">
-  <div class="chat-header-nombre">Jotas Creative</div>
+      <div class="chat-header-avatar">
+        <img src="images/logo1.png" alt="Jotas Creative">
+      </div>
+      <div class="chat-header-info">
+        <div class="chat-header-nombre">Jotas Creative</div>
         <div class="chat-header-estado">
           <span class="estado-dot"></span>
           En línea
         </div>
       </div>
-      <button class="chat-close" (click)="toggleChat()">✕</button>
+      <button class="chat-close" (click)="toggleChat()">
+        <lucide-angular [img]="X" size="16" strokeWidth="2"></lucide-angular>
+      </button>
     </div>
 
     <!-- MENSAJES -->
     <div class="chat-mensajes">
-      <div
-        *ngFor="let msg of mensajes"
-        class="mensaje"
-        [class.mensaje-bot]="msg.tipo === 'bot'"
-        [class.mensaje-user]="msg.tipo === 'user'"
-      >
+      <div *ngFor="let msg of mensajes" class="mensaje" [class.mensaje-bot]="msg.tipo === 'bot'"
+        [class.mensaje-user]="msg.tipo === 'user'">
         <div class="mensaje-burbuja">
           <span [innerHTML]="msg.texto | replace"></span>
         </div>
-
-        <!-- OPCIONES -->
         <div class="mensaje-opciones" *ngIf="msg.opciones && msg === mensajes[mensajes.length - 1]">
-          <button
-            *ngFor="let op of msg.opciones"
-            class="opcion-btn"
-            (click)="seleccionarOpcion(op.valor)"
-          >
+          <button *ngFor="let op of msg.opciones" class="opcion-btn" (click)="seleccionarOpcion(op.valor)">
+            <lucide-angular [img]="ChevronRight" size="12" strokeWidth="2"></lucide-angular>
             {{op.label}}
           </button>
         </div>
       </div>
 
-      <!-- Typing indicator -->
       <div class="typing" *ngIf="enviando">
         <span></span><span></span><span></span>
       </div>
@@ -56,16 +48,10 @@
 
     <!-- INPUT -->
     <div class="chat-input-wrap">
-      <input
-        type="text"
-        class="chat-input"
-        [(ngModel)]="inputTexto"
-        (keydown)="onEnter($event)"
-        placeholder="Escribe tu mensaje..."
-        [disabled]="enviando"
-      >
+      <input type="text" class="chat-input" [(ngModel)]="inputTexto" (keydown)="onEnter($event)"
+        placeholder="Escribe tu mensaje..." [disabled]="enviando">
       <button class="chat-send" (click)="enviarTexto()" [disabled]="!inputTexto.trim() || enviando">
-        ➤
+        <lucide-angular [img]="Send" size="18" strokeWidth="2"></lucide-angular>
       </button>
     </div>
 

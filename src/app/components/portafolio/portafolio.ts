@@ -1,23 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LucideAngularModule, PenTool, Palette, Layout, Camera } from 'lucide-angular';
 
 @Component({
   selector: 'app-portafolio',
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './portafolio.html',
   styleUrl: './portafolio.scss'
 })
 export class Portafolio {
 
+  readonly PenTool = PenTool;
+  readonly Palette = Palette;
+  readonly Layout = Layout;
+  readonly Camera = Camera;
+
   tabActivo = 'logos';
 
   tabs = [
-    { id: 'logos', label: 'Logos', icon: '✏️' },
-    { id: 'disenos', label: 'Diseños', icon: '🎨' },
-    { id: 'banners', label: 'Banners y Papelería', icon: '📄' },
-    { id: 'fotografia', label: 'Fotografía', icon: '📸' },
+    { id: 'logos', label: 'Logos', icon: PenTool },
+    { id: 'disenos', label: 'Diseños', icon: Palette },
+    { id: 'banners', label: 'Banners y Papelería', icon: Layout },
+    { id: 'fotografia', label: 'Fotografía', icon: Camera },
   ];
-
 
   galeria: Record<string, { src: string; titulo: string }[]> = {
     logos: [
@@ -46,11 +51,6 @@ export class Portafolio {
     ],
   };
 
-  get itemsActivos() {
-    return this.galeria[this.tabActivo];
-  }
-
-  cambiarTab(id: string) {
-    this.tabActivo = id;
-  }
+  get itemsActivos() { return this.galeria[this.tabActivo]; }
+  cambiarTab(id: string) { this.tabActivo = id; }
 }
